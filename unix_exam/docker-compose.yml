@@ -1,0 +1,21 @@
+version: '3.2'
+services:
+    jenkins:
+        container_name: jenkins
+        build:
+            context: jenkins
+            dockerfile: Dockerfile
+            args:
+               JENKINS_VERSION: 2.235
+        ports:
+           - 8080:8080
+           - 50000:50000
+        volumes:
+           - /tmp:/var/jenkins_home/secrets/
+    gitea:
+        container_name: gitea
+        build:
+            context: gitea
+        ports:
+            - 222:22
+            - 3000:3000
